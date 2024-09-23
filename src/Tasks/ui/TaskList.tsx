@@ -1,16 +1,13 @@
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Accordion, CloseButton, Col, Container, Row } from 'react-bootstrap';
+import { Task } from './Task';
 
 export const TaskList = () => {
     return (
 
-        <Container fluid>
-        <Row>
-          <Col>task1</Col>
-          <Col>task2</Col>
-          <Col>task3</Col>
-        </Row>
-      </Container>
+    <Accordion defaultActiveKey="0" flush>
+        <Task/>
+    </Accordion>
     );
 };
 

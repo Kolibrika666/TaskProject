@@ -1,8 +1,9 @@
+import { FormOption } from "./shared";
 
 export interface IFilterTasks {
     id: number,
     attributes: {
-        status: string,
+        status?: string,
         favorite?: boolean,
     },
 }
@@ -24,7 +25,7 @@ export interface ITask {
     attributes: {
         name: string,
         description: string,
-        status: string,
+        status?: string,
         favorite?: boolean,
     },
 }
@@ -33,6 +34,22 @@ export interface ITaskPost {
     data: {
       name: string,
       description: string,
-      status: string
+      status?: string
     }
   }
+
+  export const selectOption: FormOption<string>[] =
+  [
+    {
+        value: "все",
+        label: "все",
+    },
+    {
+        value: "Выполненные",
+        label: "Выполненные",
+    },
+    {
+        value: "Не выполненные",
+        label: "Не выполненные",
+    },
+  ];

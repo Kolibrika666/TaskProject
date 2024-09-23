@@ -15,6 +15,7 @@
  - Создание запросов Axios
  - Хранение запросов React-Redux, Redux-Toolkit
  - Библиотека стилей React-bootstrap
+ - Styled components
 
 ## Использование
  - npm i 
@@ -22,6 +23,7 @@
  - Добавить в свойства браузера "C:\Program Files\Google\Chrome\Application\chrome.exe" --disable-web-security --disable-gpu --user-data-dir=%LOCALAPPDATA%\Google\chromeTemp
 
 ## To do
+- [x] Стили
 - [ ] Добавление задачи
 - [ ] Удаление задачи
 - [ ] Получение списка всех задач

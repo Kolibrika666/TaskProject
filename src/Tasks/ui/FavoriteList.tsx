@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Offcanvas } from "react-bootstrap";
+import { TaskList } from ".";
 
 export const FavoriteList = () => {
   const [show, setShow] = useState(false);
@@ -9,8 +10,8 @@ export const FavoriteList = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch
+      <Button variant="danger" onClick={handleShow}>
+        Избранное
       </Button>
 
       <Offcanvas show={show} onHide={handleClose}>
@@ -19,6 +20,8 @@ export const FavoriteList = () => {
         </Offcanvas.Header>
         <Offcanvas.Body>
           Здесь отображаются избранные задачи
+          <p></p>
+          <TaskList/>
         </Offcanvas.Body>
       </Offcanvas>
     </>

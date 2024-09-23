@@ -1,24 +1,22 @@
-import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import React from "react";
+import { Col, Container, Navbar, Row, Stack } from "react-bootstrap";
+import { FavoriteList, Filter, TaskList } from "./ui";
+import { ModalWindow } from "./shared";
+import { Contain } from "../styles/components";
 
 export const Tasks = () => {
-    return (
-        <Container fluid>
-        <Row>
-          <Col>Избранное</Col>
-          <Col>Дела</Col>
-          <Col>Новая задача</Col>
-        </Row>
-        <Row>
-          <Col>фильтр</Col>
-        </Row>
-        <Row>
-          <Col>Основа</Col>
-        </Row>
-        <Row>
-          <Col>footer</Col>
-        </Row>
-      </Container>
-    );
+  return (
+    <Contain>
+      <Navbar>
+        <Container>
+          <FavoriteList />
+          <Navbar.Brand>Мои дела</Navbar.Brand>
+          <ModalWindow form="add" name="Новое дело" />
+        </Container>
+        </Navbar>
+        <Filter />
+        <TaskList />
+      </Contain>
+   
+  );
 };
-
