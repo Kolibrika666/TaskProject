@@ -22,7 +22,6 @@
  - Добавить в свойства браузера "C:\Program Files\Google\Chrome\Application\chrome.exe" --disable-web-security --disable-gpu --user-data-dir=%LOCALAPPDATA%\Google\chromeTemp
 
 ## To do
-- [x]Настройка шаблона, подключение библиотек, стор, клиент, запросы 
 - [ ] Добавление задачи
 - [ ] Удаление задачи
 - [ ] Получение списка всех задач
