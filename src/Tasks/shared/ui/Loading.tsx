@@ -1,10 +1,11 @@
 import React from "react";
 import { Spinner } from "react-bootstrap";
+import {MessageContain } from "../../../styles";
 
 export const Loading = () => {
   return (
-    <div>
+    <MessageContain>
       <Spinner animation="border" variant="secondary" />
-    </div>
+    </MessageContain>
   );
 };

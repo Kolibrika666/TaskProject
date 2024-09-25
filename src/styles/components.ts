@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Section = styled.div`
-  background-color: rgb(223,230,238);
+  background-color: rgb(223, 230, 238);
   width: 100vw;
   max-width: 1000px;
   min-width: 420px;
@@ -43,5 +43,15 @@ export const CloseButton = styled(ButtonImage)`
 `;
 
 export const Contain = styled.div`
-margin: 5px 0 5px 0;
+  margin: 5px 0 5px 0;
 `;
+
+export const MessageContain = styled.div`
+  display: grid;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-content: center;
+  background-color: rgba(255, 255, 255, 0.6);
+`;
+

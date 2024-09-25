@@ -1,5 +1,5 @@
 import { GlobalStyle } from "./global";
-import { TaskGrid, LikeButton, CloseButton, Section, Contain } from "./components";
+import { TaskGrid, LikeButton, CloseButton, Section, Contain, MessageContain } from "./components";
 
 export {
     GlobalStyle,
@@ -8,4 +8,6 @@ export {
     LikeButton,
     CloseButton,
     Section,
+    MessageContain,
+
 }

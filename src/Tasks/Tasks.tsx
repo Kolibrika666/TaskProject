@@ -16,7 +16,6 @@ export const Tasks = () => {
         </Navbar>
         <Filter />
         <TaskList />    
-        <Loading/>
       </Section>
    
   );
