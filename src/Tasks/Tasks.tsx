@@ -1,12 +1,12 @@
 import React from "react";
-import { Col, Container, Navbar, Row, Stack } from "react-bootstrap";
+import { Container, Navbar } from "react-bootstrap";
 import { FavoriteList, Filter, TaskList } from "./ui";
 import { ModalWindow } from "./shared";
-import { Contain } from "../styles/components";
+import { Section } from "../styles/components";
 
 export const Tasks = () => {
   return (
-    <Contain>
+    <Section>
       <Navbar>
         <Container>
           <FavoriteList />
@@ -16,7 +16,7 @@ export const Tasks = () => {
         </Navbar>
         <Filter />
         <TaskList />
-      </Contain>
+      </Section>
    
   );
 };

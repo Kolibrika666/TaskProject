@@ -1,6 +1,7 @@
-import { FloatingLabel, FormSelect } from "react-bootstrap";
+import { Container, FloatingLabel, FormSelect } from "react-bootstrap";
 import { MenuPlacement, SingleValue } from "react-select";
 import Select from "react-select";
+import { Contain } from "../../../styles";
 
 export interface FormOption<T> {
   readonly value: T;
@@ -22,14 +23,15 @@ export function BaseSelect<T>({
   menuPlacement = "auto",
 }: SelectProps<T>) {
   return (
-    <>
-      <Select
+    <Contain>
+      <Select 
         options={options}
+        defaultValue={options[0]}
         onChange={onChange as (single: SingleValue<FormOption<T>>) => void}
         value={value}
         isClearable
         menuPlacement={menuPlacement}
       />
-    </>
+    </Contain>
   );
 }

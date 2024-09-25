@@ -1,10 +1,11 @@
 import { GlobalStyle } from "./global";
-import { Contain, TaskGrid, LikeButton, CloseButton } from "./components";
+import { TaskGrid, LikeButton, CloseButton, Section, Contain } from "./components";
 
 export {
     GlobalStyle,
     Contain,
     TaskGrid,
     LikeButton,
-    CloseButton
+    CloseButton,
+    Section,
 }

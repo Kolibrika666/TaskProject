@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^2.2.7",
     "@types/styled-components": "^5.1.34",
     "axios": "^1.7.7",
+    "axios-jwt": "^4.0.3",
     "bootstrap": "^5.3.3",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",

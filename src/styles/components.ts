@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Contain = styled.div`
+export const Section = styled.div`
   background-color: rgb(223,230,238);
   width: 100vw;
   max-width: 1000px;
@@ -40,4 +40,8 @@ export const LikeButton = styled(ButtonImage)`
 
 export const CloseButton = styled(ButtonImage)`
   background-image: url("https://cdn-icons-png.flaticon.com/512/6861/6861362.png");
+`;
+
+export const Contain = styled.div`
+margin: 5px 0 5px 0;
 `;

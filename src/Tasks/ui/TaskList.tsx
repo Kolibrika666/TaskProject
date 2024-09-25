@@ -1,12 +1,26 @@
-import React from 'react';
-import { Accordion, CloseButton, Col, Container, Row } from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { Accordion } from 'react-bootstrap';
 import { Task } from './Task';
+import { useActionCreators, useAppSelector } from '../../store';
+import { tasksActions,  tasksSelectors } from '../slice/tasksSlice';
 
 export const TaskList = () => {
-    return (
+    const getList = useActionCreators(tasksActions).getTaskList
+    const taskList = useAppSelector(tasksSelectors.taskList)
+    const change = useAppSelector(tasksSelectors.change)
 
-    <Accordion defaultActiveKey="0" flush>
-        <Task/>
+    useEffect(() => {
+        getList({params: {}})
+    }, [change])
+
+    return (
+    <Accordion flush>
+{taskList.map((e)=>
+    <Task id={e.id}
+    description={e.attributes.description}
+    status={e.attributes.status}
+    name={e.attributes.name}/>
+)}
     </Accordion>
     );
 };
