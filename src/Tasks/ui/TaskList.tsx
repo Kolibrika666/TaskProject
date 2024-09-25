@@ -5,13 +5,8 @@ import { useActionCreators, useAppSelector } from '../../store';
 import { tasksActions,  tasksSelectors } from '../slice/tasksSlice';
 
 export const TaskList = () => {
-    const getList = useActionCreators(tasksActions).getTaskList
+    
     const taskList = useAppSelector(tasksSelectors.taskList)
-    const change = useAppSelector(tasksSelectors.change)
-
-    useEffect(() => {
-        getList({params: {}})
-    }, [change])
 
     return (
     <Accordion flush>

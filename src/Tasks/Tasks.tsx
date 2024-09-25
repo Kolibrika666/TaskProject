@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Navbar } from "react-bootstrap";
 import { FavoriteList, Filter, TaskList } from "./ui";
-import { ModalWindow } from "./shared";
+import { Loading, ModalWindow } from "./shared";
 import { Section } from "../styles/components";
 
 export const Tasks = () => {
@@ -15,7 +15,8 @@ export const Tasks = () => {
         </Container>
         </Navbar>
         <Filter />
-        <TaskList />
+        <TaskList />    
+        <Loading/>
       </Section>
    
   );

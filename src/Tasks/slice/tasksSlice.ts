@@ -11,6 +11,7 @@ interface IState {
   isError: boolean;
   change: number;
   taskList: ITask[];
+  filterStatus?: string;
 }
 
 const initialState: IState = {
@@ -58,12 +59,16 @@ export const tasksSlice = buildAppSlice({
     setChange: creator.reducer((state, actions: PayloadAction<number>) => {
       ++state.change;
     }),
+    setFilterStatus: creator.reducer((state, actions: PayloadAction<string | undefined>) => {
+      state.filterStatus = actions.payload;
+    }),
   }),
   selectors: {
     isLoad: (state) => state.isLoad,
     isError: (state) => state.isError,
     change: (state) => state.change,
     taskList: (state) => state.taskList,
+    filterStatus: (state) => state.filterStatus,
   },
 });
 
