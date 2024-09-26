@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Accordion, Button} from 'react-bootstrap';
 import { TaskGrid } from '../../styles';
 import { CloseButton, LikeButton } from '../../styles/components';
 import { TaskApi } from '../api/TasksApi';
-import { useActionCreators } from '../../store';
+import { useActionCreators} from '../../store';
 import { tasksSlice } from '../slice/tasksSlice';
 import { ITaskUpdate } from '../models';
 
@@ -18,6 +18,7 @@ type TaskType = {
 
 export const Task = ({id, name, description, status, favorite}: TaskType) => {
   const setChange = useActionCreators(tasksSlice.actions).setChange;
+  const addFavorite = useActionCreators(tasksSlice.actions).addFavoriteSet;
 
   const onDelete = () => {
     TaskApi.deleteTask(id).finally(()=>setChange(1))
@@ -44,7 +45,7 @@ export const Task = ({id, name, description, status, favorite}: TaskType) => {
           status == 'Выполнено' ? 'success' : 'secondary'
         } onClick={()=>onChangeStatus}>{status}</Button>
         <div>
-        <LikeButton/>
+        <LikeButton onClick={() => addFavorite({id: id, attributes: {name: name, description: description, status: status}})}/>
         <CloseButton onClick={onDelete}/>
         </div>
         </TaskGrid>

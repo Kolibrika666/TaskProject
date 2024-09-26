@@ -18,7 +18,7 @@ export const TaskList = () => {
     <>
       <InfiniteScroll
         dataLength={taskList.length}
-        next={getMoreList({
+        next={() => getMoreList({
           params: { pagination: { start: index, limit: 12 } },
         })}
         hasMore={hasMore}

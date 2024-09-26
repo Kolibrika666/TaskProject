@@ -12,9 +12,11 @@ interface IState {
   isError: boolean;
   change: number;
   taskList: ITask[];
+  favoruteList: ITask[];
   filterStatus?: string;
   hasMore: boolean;
   index: number;
+  favoriteSet: Set<ITask>;
 
 }
 
@@ -25,8 +27,10 @@ const initialState: IState = {
   taskList: [
     { id: 0, attributes: { name: "Дело 1", description: "Описание дела",  status: 'Невыполнено' } },
   ],
+  favoruteList: [],
   hasMore: true,
   index: 2,
+  favoriteSet: new Set(),
 };
 
 export const buildAppSlice = buildCreateSlice({
@@ -70,16 +74,19 @@ export const tasksSlice = buildAppSlice({
           state.isError = true;
         },
         fulfilled: (state, { payload: taskList }) => {
-          state.taskList = taskList;
+          state.taskList.push(...taskList);
           taskList.length > 0 ? state.hasMore = true : state.hasMore = false;
           state.isLoad = false;
           ++state.index
         },
       }
     ),
-    setTask: creator.reducer((state, actions: PayloadAction<ITask[]>) => {
-      state.taskList.push(...state.taskList, ...actions.payload)
+    addFavoriteSet: creator.reducer((state, actions: PayloadAction<ITask>) => {
+        state.favoriteSet.add(actions.payload) 
     }),
+    deleteFavoriteSet: creator.reducer((state, actions: PayloadAction<ITask>) => {
+      state.favoriteSet.has(actions.payload) 
+  }),
     setIsLoad: creator.reducer((state, actions: PayloadAction<boolean>) => {
       state.isLoad = actions.payload;
     }),
@@ -92,6 +99,8 @@ export const tasksSlice = buildAppSlice({
     setFilterStatus: creator.reducer((state, actions: PayloadAction<string | undefined>) => {
       state.filterStatus = actions.payload;
     }),
+
+    
   }),
   selectors: {
     isLoad: (state) => state.isLoad,
@@ -101,6 +110,7 @@ export const tasksSlice = buildAppSlice({
     filterStatus: (state) => state.filterStatus,
     index: (state) => state.index,
     hasMore: (state) => state.hasMore,
+    favoriteSet: (state) => state.favoriteSet,
   },
 });
 
