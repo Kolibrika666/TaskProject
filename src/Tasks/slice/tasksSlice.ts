@@ -5,6 +5,7 @@ import {
 } from "@reduxjs/toolkit";
 import { IFilterTasks, ITask } from "../models";
 import { TaskApi } from "../api/TasksApi";
+import { TaskList } from "../ui";
 
 interface IState {
   isLoad: boolean;
@@ -12,6 +13,9 @@ interface IState {
   change: number;
   taskList: ITask[];
   filterStatus?: string;
+  hasMore: boolean;
+  index: number;
+
 }
 
 const initialState: IState = {
@@ -21,6 +25,8 @@ const initialState: IState = {
   taskList: [
     { id: 0, attributes: { name: "Дело 1", description: "Описание дела",  status: 'Невыполнено' } },
   ],
+  hasMore: true,
+  index: 2,
 };
 
 export const buildAppSlice = buildCreateSlice({
@@ -41,6 +47,7 @@ export const tasksSlice = buildAppSlice({
           state.isLoad = true;
         },
         rejected: (state) => {
+          state.isLoad = false;
           state.isError = true;
         },
         fulfilled: (state, { payload: taskList }) => {
@@ -49,7 +56,30 @@ export const tasksSlice = buildAppSlice({
         },
       }
     ),
-
+    getMoreTaskList: creator.asyncThunk(
+      (request: { params: IFilterTasks }, { rejectWithValue }) =>
+        TaskApi.getList(request.params)
+          .then((r) => r.data.data)
+          .catch((r) => rejectWithValue(r)),
+      {
+        pending: (state) => {
+          state.isLoad = true;
+        },
+        rejected: (state) => {
+          state.isLoad = false;
+          state.isError = true;
+        },
+        fulfilled: (state, { payload: taskList }) => {
+          state.taskList = taskList;
+          taskList.length > 0 ? state.hasMore = true : state.hasMore = false;
+          state.isLoad = false;
+          ++state.index
+        },
+      }
+    ),
+    setTask: creator.reducer((state, actions: PayloadAction<ITask[]>) => {
+      state.taskList.push(...state.taskList, ...actions.payload)
+    }),
     setIsLoad: creator.reducer((state, actions: PayloadAction<boolean>) => {
       state.isLoad = actions.payload;
     }),
@@ -69,6 +99,8 @@ export const tasksSlice = buildAppSlice({
     change: (state) => state.change,
     taskList: (state) => state.taskList,
     filterStatus: (state) => state.filterStatus,
+    index: (state) => state.index,
+    hasMore: (state) => state.hasMore,
   },
 });
 

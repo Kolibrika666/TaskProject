@@ -11,7 +11,7 @@ export const Filter = () => {
     const change = useAppSelector(tasksSelectors.change)
 
     useEffect(() => {
-        getList({params: {}})
+        getList({params: { pagination: { limit: 12, start: 10}}})
     }, [status, change])
 
     const onSelectChange = (query?: FormOption<string>) => {

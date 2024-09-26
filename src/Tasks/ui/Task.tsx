@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Accordion, Button} from 'react-bootstrap';
 import { TaskGrid } from '../../styles';
 import { CloseButton, LikeButton } from '../../styles/components';
@@ -15,6 +15,7 @@ type TaskType = {
   favorite?: boolean,
 }
 
+
 export const Task = ({id, name, description, status, favorite}: TaskType) => {
   const setChange = useActionCreators(tasksSlice.actions).setChange;
 
@@ -24,7 +25,7 @@ export const Task = ({id, name, description, status, favorite}: TaskType) => {
 
   const onChangeStatus = ({id, name, description, status}: TaskType) => {
     const newStatus = (status: string) => {
-       return (status == 'Выполнено') ? 'Не выполнено' : 'Выполнено'
+       return status == 'Выполнено' ? 'Не выполнено' : 'Выполнено'
     } 
     const updateTask:ITaskUpdate = {
       name: name,
@@ -39,7 +40,9 @@ export const Task = ({id, name, description, status, favorite}: TaskType) => {
         <Accordion.Header >
           <TaskGrid>
         <h5>{name}</h5>
-        <Button variant='secondary' onClick={()=>onChangeStatus}>{status}</Button>
+        <Button variant={
+          status == 'Выполнено' ? 'success' : 'secondary'
+        } onClick={()=>onChangeStatus}>{status}</Button>
         <div>
         <LikeButton/>
         <CloseButton onClick={onDelete}/>

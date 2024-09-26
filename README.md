@@ -16,6 +16,10 @@
  - Хранение запросов React-Redux, Redux-Toolkit
  - Библиотека стилей React-bootstrap
  - Styled components
+ - React-Select
+ - React-Hook-form 
+ - API Intersection Observer
+
 
 ## Использование
  - npm i 
@@ -23,13 +27,9 @@
  - Добавить в свойства браузера "C:\Program Files\Google\Chrome\Application\chrome.exe" --disable-web-security --disable-gpu --user-data-dir=%LOCALAPPDATA%\Google\chromeTemp
 
 ## To do
-- [x] Стили
-- [ ] Добавление задачи
-- [ ] Удаление задачи
-- [ ] Получение списка всех задач
 - [ ] Infinite Scroll
 - [ ] Возможность добавить задачу в избранное, избранные задачи должны отображаться даже после обновления страницы
-- [ ] Фильтрация задач по “Все”, “Выполненные”, “Не выполненные”, “Избранное”
+
 
 ## Источники
 https://docs.google.com/forms/d/1I2u9Msd_zEPaoaINZZIDKctInL_KS4BYdMZttdwReuI/edit 

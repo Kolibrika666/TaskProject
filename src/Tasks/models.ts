@@ -6,18 +6,15 @@ export interface IFilterTasks {
         status: string,
         favorite?: boolean,
     },
+    pagination: {
+        limit: number,
+        start: number,
+    }
+
 }
 
 export interface IDataTasks<T> {
     data: T[];
-    meta: {
-        pagination: {
-            page: number,
-            pageSize: number,
-            pageCount: number,
-            total: number,
-        }
-    }
 }
 
 export interface ITask {

@@ -3,9 +3,9 @@ import { IDataTasks, IFilterTasks, ITask, ITaskPost, ITaskUpdate } from "../mode
 
 const endpoints = {
   GET: `https://cms.laurence.host/api/tasks`,
-  POST: `https://cms.laurence.host/api/tasks/post`,
-  DELETE: `https://cms.laurence.host/api/tasks/delete`,
-  PUT: `https://cms.laurence.host/api/tasks/put`,
+  POST: `https://cms.laurence.host/api/tasks`,
+  DELETE: `https://cms.laurence.host/api/tasks`,
+  PUT: `https://cms.laurence.host/api/tasks`,
 };
 export class TaskApi {
   static getList(params?: IFilterTasks) {
