@@ -6,6 +6,7 @@ import {
 import { IFilterTasks, ITask } from "../models";
 import { TaskApi } from "../api/TasksApi";
 import { TaskList } from "../ui";
+import { loadFromLocalStorage, saveToLocalStorage } from "../../store";
 
 interface IState {
   isLoad: boolean;
@@ -30,7 +31,7 @@ const initialState: IState = {
   favoruteList: [],
   hasMore: true,
   index: 2,
-  favoriteSet: new Set(),
+  favoriteSet: new Set([...loadFromLocalStorage()]),
 };
 
 export const buildAppSlice = buildCreateSlice({
@@ -82,7 +83,8 @@ export const tasksSlice = buildAppSlice({
       }
     ),
     addFavoriteSet: creator.reducer((state, actions: PayloadAction<ITask>) => {
-        state.favoriteSet.add(actions.payload) 
+        state.favoriteSet.add(actions.payload)
+        saveToLocalStorage(state.favoriteSet)
     }),
     deleteFavoriteSet: creator.reducer((state, actions: PayloadAction<ITask>) => {
       state.favoriteSet.has(actions.payload) 

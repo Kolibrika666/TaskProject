@@ -1,2 +1,2 @@
 export { store } from "./store"
-export { useActionCreators, useAppSelector} from "./hooks"
+export { useActionCreators, useAppSelector, saveToLocalStorage, loadFromLocalStorage } from "./hooks"

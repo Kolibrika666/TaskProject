@@ -3,6 +3,7 @@ import {
   type ActionCreator,
   type ActionCreatorsMapObject,
   type AsyncThunk,
+  PayloadAction,
 } from "@reduxjs/toolkit";
 import { useMemo } from "react";
 import {
@@ -33,7 +34,7 @@ export const useActionCreators = <
 
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-function saveToLocalStorage(state) {
+export function saveToLocalStorage(state: any) {
   try {
     const serialisedState = JSON.stringify(state);
     localStorage.setItem("persistantState", serialisedState);
@@ -42,7 +43,7 @@ function saveToLocalStorage(state) {
   }
 }
 
-function loadFromLocalStorage() {
+export function loadFromLocalStorage() {
   try {
     const serialisedState = localStorage.getItem("persistantState");
     if (serialisedState === null) return undefined;
