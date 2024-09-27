@@ -5,7 +5,6 @@ import {
 } from "@reduxjs/toolkit";
 import { IFilterTasks, ITask } from "../models";
 import { TaskApi } from "../api/TasksApi";
-import { TaskList } from "../ui";
 import { loadFromLocalStorage, saveToLocalStorage } from "../../store";
 
 interface IState {
@@ -17,7 +16,7 @@ interface IState {
   filterStatus?: string;
   hasMore: boolean;
   index: number;
-  favoriteSet: Set<ITask>;
+  favoriteList: ITask[];
 
 }
 
@@ -25,13 +24,11 @@ const initialState: IState = {
   isLoad: false,
   isError: false,
   change: 0,
-  taskList: [
-    { id: 0, attributes: { name: "Дело 1", description: "Описание дела",  status: 'Невыполнено' } },
-  ],
+  taskList: [],
   favoruteList: [],
   hasMore: true,
   index: 2,
-  favoriteSet: new Set([...loadFromLocalStorage()]),
+  favoriteList: [],
 };
 
 export const buildAppSlice = buildCreateSlice({
@@ -82,12 +79,18 @@ export const tasksSlice = buildAppSlice({
         },
       }
     ),
-    addFavoriteSet: creator.reducer((state, actions: PayloadAction<ITask>) => {
-        state.favoriteSet.add(actions.payload)
-        saveToLocalStorage(state.favoriteSet)
+    addFavoriteList: creator.reducer((state, actions: PayloadAction<ITask>) => {
+      console.log(actions.payload)
+        !state.favoriteList.some(((e) => e.id == actions.payload.id)) && state.favoriteList.push(actions.payload)
+        saveToLocalStorage(state.favoriteList)
     }),
-    deleteFavoriteSet: creator.reducer((state, actions: PayloadAction<ITask>) => {
-      state.favoriteSet.has(actions.payload) 
+    getFavoriteList: creator.reducer((state) => {
+      state.favoriteList = [...loadFromLocalStorage()]
+  }),
+    deleteFavoriteList: creator.reducer((state, actions: PayloadAction<ITask>) => {
+      const newArray = state.favoriteList.filter((e) => e.id !== actions.payload.id);
+      state.favoriteList = newArray
+      saveToLocalStorage(state.favoriteList)
   }),
     setIsLoad: creator.reducer((state, actions: PayloadAction<boolean>) => {
       state.isLoad = actions.payload;
@@ -112,7 +115,7 @@ export const tasksSlice = buildAppSlice({
     filterStatus: (state) => state.filterStatus,
     index: (state) => state.index,
     hasMore: (state) => state.hasMore,
-    favoriteSet: (state) => state.favoriteSet,
+    favoriteList: (state) => state.favoriteList,
   },
 });
 

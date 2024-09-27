@@ -1,8 +1,18 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 
+const babelPlugins = [];
+
+if (process.env.MIGHTYMELD) {
+  babelPlugins.push('mightymeld/babel-plugin-mightymeld');
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [ react({
+      babel: {
+        plugins: babelPlugins
+      }
+    })],
 })
 

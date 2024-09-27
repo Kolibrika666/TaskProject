@@ -18,7 +18,7 @@ type TaskType = {
 
 export const FavoriteTask = ({id, name, description, status}: TaskType) => {
   const setChange = useActionCreators(tasksSlice.actions).setChange;
-  const onDelete = useActionCreators(tasksSlice.actions).deleteFavoriteSet;
+  const onDelete = useActionCreators(tasksSlice.actions).deleteFavoriteList;
 
   const onChangeStatus = ({id, name, description, status}: TaskType) => {
     const newStatus = (status: string) => {

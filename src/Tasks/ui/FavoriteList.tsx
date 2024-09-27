@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { Button, Offcanvas } from "react-bootstrap";
-import { TaskList } from ".";
 import { FavoriteTask } from "./FavoriteTask";
-import { useAppSelector } from "../../store";
+import { useActionCreators, useAppSelector } from "../../store";
 import { tasksSlice } from "../slice/tasksSlice";
 
 export const FavoriteList = () => {
-  const favoriteSet = useAppSelector(tasksSlice.selectors.favoriteSet);
+  const favoriteList = useAppSelector(tasksSlice.selectors.favoriteList);
+  const favoriteListInLocal = useActionCreators(tasksSlice.actions).getFavoriteList
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setShow(true);
+    favoriteListInLocal();
+  } 
 
   return (
     <>
@@ -24,7 +27,7 @@ export const FavoriteList = () => {
         <Offcanvas.Body>
           Здесь отображаются избранные задачи
           <p></p>
-          {[...favoriteSet].map((e) => (
+          {favoriteList.map((e) => (
             <FavoriteTask
               id={e.id}
               name={e.attributes.name}
